@@ -1,0 +1,86 @@
+﻿@model Domain.Entities.EmpAirline
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@{ var path = "~/content/Upload/" + @Model.Image;}
+
+<h2 style="color:blue"><i class="fa fa-trash"></i> Delete Employee</h2>
+
+<h3>Are you sure you want to delete this Employee?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd style="margin-left:20px">
+            <img src="@Url.Content(path)" width="150" /><br />
+        </dd> 
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

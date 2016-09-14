@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Domain.Entities.Location>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h3 class="header smaller lighter blue"><i class="fa fa-list-alt"></i> Location List</h3>
+
+
+
+<a class="blue" href="@Url.Action("Create", "Location")">
+    <i class="fa fa-plus"></i> Create New
+</a>
+<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AirportCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AirportName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeZone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AirportCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AirportName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeZone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZipCode)
+        </td>
+        <td>
+            <a class="blue" href="@Url.Action("Details", "Location", new {id= item.LocationId})">
+                <i class="ace-icon fa fa-search-plus bigger-130"></i>
+            </a>
+
+            <a class="green" href="@Url.Action("Edit", "Location", new {id= item.LocationId})">
+                <i class="ace-icon fa fa-pencil bigger-130"></i>
+            </a>
+
+            <a class="red" href="@Url.Action("Delete", "Location", new {id= item.LocationId})">
+                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

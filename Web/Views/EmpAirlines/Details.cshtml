@@ -1,0 +1,119 @@
+﻿@model Domain.Entities.EmpAirline
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{ var path = "~/content/Upload/" + @Model.Image;}
+
+<h2 style="color:blue"><i class="fa fa-info"></i> Details Employee</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd style="margin-left:20px">
+            <img src="@Url.Content(path)" width="150" /><br />
+        </dd> 
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contry)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<button style="margin-left:800px" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i> Send Mail</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-envelope"></i> Send Email</h4>
+            </div>
+            @using (Html.BeginForm("SendMail", "EmpAirlines", FormMethod.Post))
+            {
+                <div style="margin-left:100px">
+
+                    <label>Email address:</label>
+                    <input name="to" value="@Model.Email" type="text" /><br />
+                    <label>Subject:</label>
+                    <input name="cc"  type="text" style="margin-left:45px"><br />
+
+
+                    <label>Body:</label>
+                    <textarea rows="1" cols="40" name="body" style="margin-left:60px"></textarea>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="submit"   class="btn btn-default" >Validate</button>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpAirlineId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

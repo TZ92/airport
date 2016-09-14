@@ -1,0 +1,17 @@
+﻿@{
+            var myChart = new Chart(width: 600, height: 400)
+               .AddTitle("Airlines Company")
+               .AddSeries(chartType: "column",
+                  xValue: ViewBag.x,
+                  yValues: ViewBag.y)
+               .Write();
+        }
+
+
+
+        
+
+
+
+
+

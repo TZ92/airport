@@ -1,0 +1,70 @@
+﻿@model Domain.Entities.Plane
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3 class="header smaller lighter blue"><i class="fa fa-plane"></i> Plane Details</h3>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-9">
+        <div class="profile-user-info">
+            <div class="profile-info-row">
+                <div class="profile-info-name"> @Html.DisplayNameFor(model => model.PlaneName) </div>
+
+                <div class="profile-info-value">
+                    <span>@Html.DisplayFor(model => model.PlaneName)</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> @Html.DisplayNameFor(model => model.TotalSeats) </div>
+
+                <div class="profile-info-value">
+                    <span>@Html.DisplayFor(model => model.TotalSeats)</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> @Html.DisplayNameFor(model => model.MaximumSpeed) </div>
+
+                <div class="profile-info-value">
+                    <span>@Html.DisplayFor(model => model.MaximumSpeed)</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> @Html.DisplayNameFor(model => model.Plug) <i class="fa fa-plug"></i></div>
+
+                <div class="profile-info-value">
+                    <input name="Plug" id="Plug" class="ace ace-switch ace-switch-5" type="checkbox" value="true"
+                           @if (Model.Plug) { @("checked")   ; }>
+                    <span class="lbl"></span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name"> @Html.DisplayNameFor(model => model.Wifi) <i class="fa fa-wifi"></i></div>
+
+                <div class="profile-info-value">
+                    <input name="Wifi" id="Wifi" class="ace ace-switch ace-switch-5" type="checkbox" value="true"
+                           @if (Model.Wifi) { @("checked")  ; }>
+                    <span class="lbl"></span>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+</div>
+
+<h4 class="widget-title smaller" style="display:inline-block">
+    <i class="ace-icon fa fa-pencil bigger-110"></i>
+    <a href="@Url.Action("Edit", "Plane", new {id= Model.PlaneId})">Edit | </a>
+</h4>
+<h4 class="widget-title smaller" style="display:inline-block">
+    <i class="ace-icon fa fa-list-alt bigger-110"></i>
+    <a href="@Url.Action("Index", "Plane")"> Back to List</a>
+</h4>
+
+

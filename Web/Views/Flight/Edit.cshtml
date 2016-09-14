@@ -1,0 +1,234 @@
+﻿@model Domain.Entities.Flight
+<link rel="stylesheet" href="~/Content/tp/css/chosen.min.css" />
+<link rel="stylesheet" href="~/Content/tp/css/datepicker.min.css" />
+<link rel="stylesheet" href="~/Content/tp/css/bootstrap-timepicker.min.css" />
+<link rel="stylesheet" href="~/Content/tp/css/daterangepicker.min.css" />
+<link rel="stylesheet" href="~/Content/tp/css/bootstrap-datetimepicker.min.css" />
+@{
+    ViewBag.Title = "Add new Flight";
+}
+
+<div class="page-header">
+    <h1>
+        <i class="fa fa-paper-plane-o"></i> Edit Flight
+    </h1>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.FlightId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="DepartLocationId" class="chosen-select form-control" id="form-field-select-3" data-placeholder="Choose a Location...">
+                    <option value=""></option>
+                    @foreach (var l in ViewBag.locations)
+                    {
+                        <option value="@l.LocationId" @if (l.LocationId == Model.DepartLocationId) { @("selected")  }>@l.AirportName</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.DepartLocationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArrivalLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="ArrivalLocationId" class="chosen-select form-control" id="form-field-select-3" data-placeholder="Choose a Location...">
+                    <option value=""></option>
+                    @foreach (var l in ViewBag.locations)
+                    {
+                        <option value="@l.LocationId" @if (l.LocationId == Model.ArrivalLocationId) { @("selected")  }>@l.AirportName</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.ArrivalLocationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="date-timepicker1" type="text" class="form-control" name="DepartDate" 
+                       value="@Html.ValueFor(model => model.DepartDate, "{0:yyyy-MM-dd hh:mm}")")
+
+                       
+                        />
+                @Html.ValidationMessageFor(model => model.DepartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArrivalDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="date-timepicker2" type="text" class="form-control" name="ArrivalDate"
+                       value="@Html.ValueFor(model => model.ArrivalDate, "{0:yyyy-MM-dd hh:mm}")")
+                       />
+                @Html.ValidationMessageFor(model => model.ArrivalDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumberStops, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumberStops, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberStops, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FlightDuration, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FlightDuration, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FlightDuration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FlightMiles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FlightMiles, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FlightMiles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlaneId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="chosen-select form-control" id="form-field-select-3" name="PlaneId" data-placeholder="Choose a Plane...">
+                    <option value=""></option>
+                    @foreach (var l in ViewBag.planes)
+                    {
+                        <option value="@l.PlaneId" @if (l.PlaneId == Model.PlaneId) { @("selected")  }>@l.PlaneName</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.PlaneId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AirlinecompanyId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="AirlinecompanyId" class="chosen-select form-control" id="form-field-select-3" data-placeholder="Choose a Airline Company...">
+                    <option value=""></option>
+                    @foreach (var l in ViewBag.airlinecompanys)
+                    {
+                        <option value="@l.AirlinecompanyId" @if (l.AirlinecompanyId == Model.AirlinecompanyId) { @("selected")  }>@l.Name</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.AirlinecompanyId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+<script src="~/Scripts/js/jquery-ui.custom.min.js"></script>
+<script src="~/Scripts/js/chosen.jquery.min.js"></script>
+<script src="~/Scripts/js/bootstrap-datepicker.min.js"></script>
+<script src="~/Scripts/js/bootstrap-timepicker.min.js"></script>
+<script src="~/Scripts/js/moment.min.js"></script>
+<script src="~/Scripts/js/daterangepicker.min.js"></script>
+<script src="~/Scripts/js/bootstrap-datetimepicker.min.js"></script>
+
+<script src="~/Scripts/js/bootstrap-tag.min.js"></script>
+
+<!-- ace scripts -->
+<script src="~/Scripts/js/ace-elements.min.js"></script>
+<script src="~/Scripts/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+			jQuery(function($) {
+
+				if(!ace.vars['touch']) {
+					$('.chosen-select').chosen({allow_single_deselect:true});
+					//resize the chosen on window resize
+
+					$(window)
+					.off('resize.chosen')
+					.on('resize.chosen', function() {
+						$('.chosen-select').each(function() {
+							 var $this = $(this);
+							 $this.next().css({'width': $this.parent().width()});
+						})
+					}).trigger('resize.chosen');
+					//resize chosen on sidebar collapse/expand
+					$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+						if(event_name != 'sidebar_collapsed') return;
+						$('.chosen-select').each(function() {
+							 var $this = $(this);
+							 $this.next().css({'width': $this.parent().width()});
+						})
+					});
+
+
+					$('#chosen-multiple-style .btn').on('click', function(e){
+						var target = $(this).find('input[type=radio]');
+						var which = parseInt(target.val());
+						if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+						 else $('#form-field-select-4').removeClass('tag-input-style');
+					});
+				}
+
+			    $('#date-timepicker1').datetimepicker(
+                        {
+                            format: 'YYYY-MM-DD HH:mm'
+                        }
+                    ).next().on(ace.click_event, function () {
+				    $(this).prev().focus();
+                    });
+
+			    $('#date-timepicker2').datetimepicker(
+                        {
+                            format: 'YYYY-MM-DD HH:mm'
+                        }
+                    ).next().on(ace.click_event, function () {
+                        $(this).prev().focus();
+                    });
+
+			});
+</script>
